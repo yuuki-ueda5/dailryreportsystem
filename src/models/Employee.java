@@ -61,7 +61,7 @@ public class Employee {
     public Integer getId(){
         return id;
     }
-    public void getId(Integer id){
+    public void setId(Integer id){
         this.id = id;
     }
     public String getCode(){
@@ -82,7 +82,7 @@ public class Employee {
     public void setPassword(String password){
         this.password = password;
     }
-    public Integer setAdmin_flag(){
+    public Integer getAdmin_flag(){
         return admin_flag;
     }
     public void setAdmin_flag(Integer admin_flag){
@@ -91,13 +91,13 @@ public class Employee {
     public Timestamp getCreated_at(){
         return created_at;
     }
-    public void Created_at(Timestamp created_at){
+    public void setCreated_at(Timestamp created_at){
         this.created_at = created_at;
     }
     public Timestamp getUpdate_at(){
         return updated_at;
     }
-    public void updated_at(Timestamp updated_at){
+    public void setUpdated_at(Timestamp updated_at){
         this.updated_at = updated_at;
     }
     public Integer getDelete_flag(){
