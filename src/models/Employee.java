@@ -106,5 +106,4 @@ public class Employee {
     public void setDelete_flag(Integer deleted_flag){
         this.delete_flag = deleted_flag;
     }
-
 }

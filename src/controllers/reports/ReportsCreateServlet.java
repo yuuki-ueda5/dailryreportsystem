@@ -58,6 +58,8 @@ public class ReportsCreateServlet extends HttpServlet {
             r.setCreated_at(currentTime);
             r.setUpdated_at(currentTime);
 
+            r.setApproval_flag(0);
+
             List<String>errors = ReportValidator.validate(r);
             if(errors.size() > 0){
                 em.close();

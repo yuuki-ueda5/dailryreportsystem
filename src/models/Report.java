@@ -61,6 +61,12 @@ public class Report {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
+    @Column(name = "approval_flag", nullable = false)
+    private Integer approval_flag;
+
+    @Column(name = "coment", nullable = true)
+    private String coment;
+
     public Integer getId() {
         return id;
     }
@@ -115,5 +121,17 @@ public class Report {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+    public Integer getApproval_flag(){
+        return approval_flag;
+    }
+    public void setApproval_flag(Integer approval_flag){
+        this.approval_flag = approval_flag;
+    }
+    public String getComent() {
+        return coment;
+    }
+    public void setComent(String coment) {
+        this.coment = coment;
     }
 }

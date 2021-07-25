@@ -1,4 +1,4 @@
-package controllers.reports;
+package controllers.like;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,20 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Like;
-import models.Report;
 import utils.DBUtil;
 
 /**
- * Servlet implementation class ReportsShowServlet
+ * Servlet implementation class LikesShowServlet
  */
-@WebServlet("/reports/show")
-public class ReportsShowServlet extends HttpServlet {
+@WebServlet("/like/show")
+public class LikesShowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportsShowServlet() {
+    public LikesShowServlet() {
         super();
     }
 
@@ -35,8 +34,6 @@ public class ReportsShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        Report r = em.find(Report.class, Integer.parseInt(request.getParameter("id")));
-
         int page;
         try{
             page = Integer.parseInt(request.getParameter("page"));
@@ -44,21 +41,17 @@ public class ReportsShowServlet extends HttpServlet {
             page = 1;
         }
         List<Like>likes = em.createNamedQuery("getAllLikes",Like.class)
-                .setParameter("report", r)
                 .setFirstResult(5 * (page - 1))
                 .setMaxResults(5)
                 .getResultList();
 
         long likes_count = (long)em.createNamedQuery("getLikesCount",Long.class)
-                .setParameter("report", r)
                 .getSingleResult();
 
         em.close();
 
-        request.setAttribute("report", r);
-        request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("likes", likes);
-        request.setAttribute("likes_count",likes_count);
+        request.setAttribute("likes_count", likes_count);
         request.setAttribute("page", page);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/show.jsp");
